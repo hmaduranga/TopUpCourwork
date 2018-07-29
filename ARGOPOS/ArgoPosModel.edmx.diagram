@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="39358233d6c14bc59a5dca7f8c8f557f" Name="Diagram1" ZoomLevel="81">
+        <EntityTypeShape EntityType="ARGOPOSModel.pos_customer" Width="1.5" PointX="5.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ARGOPOSModel.pos_grnheader" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ARGOPOSModel.pos_grnitem" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ARGOPOSModel.pos_item" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ARGOPOSModel.pos_itemcategory" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ARGOPOSModel.pos_itemstock" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ARGOPOSModel.pos_role" Width="1.5" PointX="7.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ARGOPOSModel.pos_sales" Width="1.5" PointX="8" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ARGOPOSModel.pos_salesitem" Width="1.5" PointX="10.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ARGOPOSModel.pos_supplier" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ARGOPOSModel.pos_unit" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ARGOPOSModel.pos_user" Width="1.5" PointX="10" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="ARGOPOSModel.FK_pos_sales_pos_customer" ManuallyRouted="false" />
+        <AssociationConnector Association="ARGOPOSModel.FK_pos_grnheader_pos_supplier" ManuallyRouted="false" />
+        <AssociationConnector Association="ARGOPOSModel.FK_pos_grnitem_pos_grnheader" ManuallyRouted="false" />
+        <AssociationConnector Association="ARGOPOSModel.FK_pos_itemstock_pos_grnheader" ManuallyRouted="false" />
+        <AssociationConnector Association="ARGOPOSModel.FK_pos_item_pos_itemcategory" ManuallyRouted="false" />
+        <AssociationConnector Association="ARGOPOSModel.FK_pos_item_pos_unit" ManuallyRouted="false" />
+        <AssociationConnector Association="ARGOPOSModel.FK_pos_itemstock_pos_item" ManuallyRouted="false" />
+        <AssociationConnector Association="ARGOPOSModel.FK_pos_user_pos_role" ManuallyRouted="false" />
+        <AssociationConnector Association="ARGOPOSModel.FK_pos_salesitem_pos_sales" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,703 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ARGOPOSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="pos_customer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="customername" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="customeraddrees" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="customercontact" Type="int" Nullable="false" />
+          <Property Name="loyaltypoint" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="pos_grnheader">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="number" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="time" Type="datetime" Nullable="false" />
+          <Property Name="suplier" Type="int" Nullable="false" />
+          <Property Name="total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="pos_grnitem">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="itemid" Type="int" Nullable="false" />
+          <Property Name="itemquntity" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="itemcost" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="grnid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="pos_item">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="itemname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="unit" Type="int" Nullable="false" />
+          <Property Name="discreption" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="itemcategory" Type="int" Nullable="false" />
+          <Property Name="stock" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="pos_itemcategory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="category" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="pos_itemstock">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="initalstock" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="grnid" Type="int" Nullable="false" />
+          <Property Name="curentstock" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="stockcost" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="itemcost" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="stocknumber" Type="nchar" MaxLength="10" />
+          <Property Name="itemid" Type="int" />
+        </EntityType>
+        <EntityType Name="pos_role">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="role" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="pos_sales">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="salesnumber" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="time" Type="datetime" Nullable="false" />
+          <Property Name="customerid" Type="int" Nullable="false" />
+          <Property Name="total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="loyltypoint" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="pos_salesitem">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="salesid" Type="int" Nullable="false" />
+          <Property Name="itemid" Type="int" Nullable="false" />
+          <Property Name="itemprice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="itemqty" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="itemcost" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="pos_supplier">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="suppliernmae" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="suppliercontact" Type="int" Nullable="false" />
+          <Property Name="suppliersddress" Type="nchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="pos_unit">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="unit" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="pos_user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="role" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <Association Name="FK_pos_grnheader_pos_supplier">
+          <End Role="pos_supplier" Type="Self.pos_supplier" Multiplicity="1" />
+          <End Role="pos_grnheader" Type="Self.pos_grnheader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pos_supplier">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pos_grnheader">
+              <PropertyRef Name="suplier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pos_grnitem_pos_grnheader">
+          <End Role="pos_grnheader" Type="Self.pos_grnheader" Multiplicity="1" />
+          <End Role="pos_grnitem" Type="Self.pos_grnitem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pos_grnheader">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pos_grnitem">
+              <PropertyRef Name="grnid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pos_itemstock_pos_grnheader">
+          <End Role="pos_grnheader" Type="Self.pos_grnheader" Multiplicity="1" />
+          <End Role="pos_itemstock" Type="Self.pos_itemstock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pos_grnheader">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pos_itemstock">
+              <PropertyRef Name="grnid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pos_itemstock_pos_item">
+          <End Role="pos_item" Type="Self.pos_item" Multiplicity="0..1" />
+          <End Role="pos_itemstock" Type="Self.pos_itemstock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pos_item">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pos_itemstock">
+              <PropertyRef Name="itemid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pos_sales_pos_customer">
+          <End Role="pos_customer" Type="Self.pos_customer" Multiplicity="1" />
+          <End Role="pos_sales" Type="Self.pos_sales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pos_customer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pos_sales">
+              <PropertyRef Name="customerid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pos_salesitem_pos_sales">
+          <End Role="pos_sales" Type="Self.pos_sales" Multiplicity="1" />
+          <End Role="pos_salesitem" Type="Self.pos_salesitem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pos_sales">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pos_salesitem">
+              <PropertyRef Name="salesid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pos_user_pos_role">
+          <End Role="pos_role" Type="Self.pos_role" Multiplicity="1" />
+          <End Role="pos_user" Type="Self.pos_user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pos_role">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pos_user">
+              <PropertyRef Name="role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ARGOPOSModelStoreContainer">
+          <EntitySet Name="pos_customer" EntityType="Self.pos_customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pos_grnheader" EntityType="Self.pos_grnheader" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pos_grnitem" EntityType="Self.pos_grnitem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pos_item" EntityType="Self.pos_item" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pos_itemcategory" EntityType="Self.pos_itemcategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pos_itemstock" EntityType="Self.pos_itemstock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pos_role" EntityType="Self.pos_role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pos_sales" EntityType="Self.pos_sales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pos_salesitem" EntityType="Self.pos_salesitem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pos_supplier" EntityType="Self.pos_supplier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pos_unit" EntityType="Self.pos_unit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pos_user" EntityType="Self.pos_user" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_pos_grnheader_pos_supplier" Association="Self.FK_pos_grnheader_pos_supplier">
+            <End Role="pos_supplier" EntitySet="pos_supplier" />
+            <End Role="pos_grnheader" EntitySet="pos_grnheader" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pos_grnitem_pos_grnheader" Association="Self.FK_pos_grnitem_pos_grnheader">
+            <End Role="pos_grnheader" EntitySet="pos_grnheader" />
+            <End Role="pos_grnitem" EntitySet="pos_grnitem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pos_itemstock_pos_grnheader" Association="Self.FK_pos_itemstock_pos_grnheader">
+            <End Role="pos_grnheader" EntitySet="pos_grnheader" />
+            <End Role="pos_itemstock" EntitySet="pos_itemstock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pos_itemstock_pos_item" Association="Self.FK_pos_itemstock_pos_item">
+            <End Role="pos_item" EntitySet="pos_item" />
+            <End Role="pos_itemstock" EntitySet="pos_itemstock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pos_sales_pos_customer" Association="Self.FK_pos_sales_pos_customer">
+            <End Role="pos_customer" EntitySet="pos_customer" />
+            <End Role="pos_sales" EntitySet="pos_sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pos_salesitem_pos_sales" Association="Self.FK_pos_salesitem_pos_sales">
+            <End Role="pos_sales" EntitySet="pos_sales" />
+            <End Role="pos_salesitem" EntitySet="pos_salesitem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pos_user_pos_role" Association="Self.FK_pos_user_pos_role">
+            <End Role="pos_role" EntitySet="pos_role" />
+            <End Role="pos_user" EntitySet="pos_user" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ARGOPOSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="pos_customer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customername" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="customeraddrees" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="customercontact" Type="Int32" Nullable="false" />
+          <Property Name="loyaltypoint" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <NavigationProperty Name="pos_sales" Relationship="Self.FK_pos_sales_pos_customer" FromRole="pos_customer" ToRole="pos_sales" />
+        </EntityType>
+        <EntityType Name="pos_grnheader">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="number" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="suplier" Type="Int32" Nullable="false" />
+          <Property Name="total" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <NavigationProperty Name="pos_supplier" Relationship="Self.FK_pos_grnheader_pos_supplier" FromRole="pos_grnheader" ToRole="pos_supplier" />
+          <NavigationProperty Name="pos_grnitem" Relationship="Self.FK_pos_grnitem_pos_grnheader" FromRole="pos_grnheader" ToRole="pos_grnitem" />
+          <NavigationProperty Name="pos_itemstock" Relationship="Self.FK_pos_itemstock_pos_grnheader" FromRole="pos_grnheader" ToRole="pos_itemstock" />
+        </EntityType>
+        <EntityType Name="pos_grnitem">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="itemid" Type="Int32" Nullable="false" />
+          <Property Name="itemquntity" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="itemcost" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="grnid" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="pos_grnheader" Relationship="Self.FK_pos_grnitem_pos_grnheader" FromRole="pos_grnitem" ToRole="pos_grnheader" />
+        </EntityType>
+        <EntityType Name="pos_item">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="itemname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="unit" Type="Int32" Nullable="false" />
+          <Property Name="discreption" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="itemcategory" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="pos_itemcategory" Relationship="Self.FK_pos_item_pos_itemcategory" FromRole="pos_item" ToRole="pos_itemcategory" />
+          <NavigationProperty Name="pos_unit" Relationship="Self.FK_pos_item_pos_unit" FromRole="pos_item" ToRole="pos_unit" />
+          <NavigationProperty Name="pos_itemstock" Relationship="Self.FK_pos_itemstock_pos_item" FromRole="pos_item" ToRole="pos_itemstock" />
+          <Property Name="stock" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="pos_itemcategory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="pos_item" Relationship="Self.FK_pos_item_pos_itemcategory" FromRole="pos_itemcategory" ToRole="pos_item" />
+        </EntityType>
+        <EntityType Name="pos_itemstock">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="initalstock" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="grnid" Type="Int32" Nullable="false" />
+          <Property Name="curentstock" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="stockcost" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="itemcost" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="stocknumber" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="itemid" Type="Int32" />
+          <NavigationProperty Name="pos_grnheader" Relationship="Self.FK_pos_itemstock_pos_grnheader" FromRole="pos_itemstock" ToRole="pos_grnheader" />
+          <NavigationProperty Name="pos_item" Relationship="Self.FK_pos_itemstock_pos_item" FromRole="pos_itemstock" ToRole="pos_item" />
+        </EntityType>
+        <EntityType Name="pos_role">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="role" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="pos_user" Relationship="Self.FK_pos_user_pos_role" FromRole="pos_role" ToRole="pos_user" />
+        </EntityType>
+        <EntityType Name="pos_sales">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="salesnumber" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="customerid" Type="Int32" Nullable="false" />
+          <Property Name="total" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="loyltypoint" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="pos_customer" Relationship="Self.FK_pos_sales_pos_customer" FromRole="pos_sales" ToRole="pos_customer" />
+          <NavigationProperty Name="pos_salesitem" Relationship="Self.FK_pos_salesitem_pos_sales" FromRole="pos_sales" ToRole="pos_salesitem" />
+        </EntityType>
+        <EntityType Name="pos_salesitem">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="salesid" Type="Int32" Nullable="false" />
+          <Property Name="itemid" Type="Int32" Nullable="false" />
+          <Property Name="itemprice" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="itemqty" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="itemcost" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="pos_sales" Relationship="Self.FK_pos_salesitem_pos_sales" FromRole="pos_salesitem" ToRole="pos_sales" />
+        </EntityType>
+        <EntityType Name="pos_supplier">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="suppliernmae" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="suppliercontact" Type="Int32" Nullable="false" />
+          <Property Name="suppliersddress" Type="String" MaxLength="200" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="pos_grnheader" Relationship="Self.FK_pos_grnheader_pos_supplier" FromRole="pos_supplier" ToRole="pos_grnheader" />
+        </EntityType>
+        <EntityType Name="pos_unit">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="unit" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="pos_item" Relationship="Self.FK_pos_item_pos_unit" FromRole="pos_unit" ToRole="pos_item" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="pos_user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="username" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="pos_role" Relationship="Self.FK_pos_user_pos_role" FromRole="pos_user" ToRole="pos_role" />
+        </EntityType>
+        <Association Name="FK_pos_sales_pos_customer">
+          <End Role="pos_customer" Type="Self.pos_customer" Multiplicity="1" />
+          <End Role="pos_sales" Type="Self.pos_sales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pos_customer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pos_sales">
+              <PropertyRef Name="customerid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pos_grnheader_pos_supplier">
+          <End Role="pos_supplier" Type="Self.pos_supplier" Multiplicity="1" />
+          <End Role="pos_grnheader" Type="Self.pos_grnheader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pos_supplier">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pos_grnheader">
+              <PropertyRef Name="suplier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pos_grnitem_pos_grnheader">
+          <End Role="pos_grnheader" Type="Self.pos_grnheader" Multiplicity="1" />
+          <End Role="pos_grnitem" Type="Self.pos_grnitem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pos_grnheader">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pos_grnitem">
+              <PropertyRef Name="grnid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pos_itemstock_pos_grnheader">
+          <End Role="pos_grnheader" Type="Self.pos_grnheader" Multiplicity="1" />
+          <End Role="pos_itemstock" Type="Self.pos_itemstock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pos_grnheader">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pos_itemstock">
+              <PropertyRef Name="grnid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pos_item_pos_itemcategory">
+          <End Role="pos_itemcategory" Type="Self.pos_itemcategory" Multiplicity="1" />
+          <End Role="pos_item" Type="Self.pos_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pos_itemcategory">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pos_item">
+              <PropertyRef Name="itemcategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pos_item_pos_unit">
+          <End Role="pos_unit" Type="Self.pos_unit" Multiplicity="1" />
+          <End Role="pos_item" Type="Self.pos_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pos_unit">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pos_item">
+              <PropertyRef Name="unit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pos_itemstock_pos_item">
+          <End Role="pos_item" Type="Self.pos_item" Multiplicity="0..1" />
+          <End Role="pos_itemstock" Type="Self.pos_itemstock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pos_item">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pos_itemstock">
+              <PropertyRef Name="itemid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pos_user_pos_role">
+          <End Role="pos_role" Type="Self.pos_role" Multiplicity="1" />
+          <End Role="pos_user" Type="Self.pos_user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pos_role">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pos_user">
+              <PropertyRef Name="role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pos_salesitem_pos_sales">
+          <End Role="pos_sales" Type="Self.pos_sales" Multiplicity="1" />
+          <End Role="pos_salesitem" Type="Self.pos_salesitem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pos_sales">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pos_salesitem">
+              <PropertyRef Name="salesid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ArgoPosEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="pos_customer" EntityType="Self.pos_customer" />
+          <EntitySet Name="pos_grnheader" EntityType="Self.pos_grnheader" />
+          <EntitySet Name="pos_grnitem" EntityType="Self.pos_grnitem" />
+          <EntitySet Name="pos_item" EntityType="Self.pos_item" />
+          <EntitySet Name="pos_itemcategory" EntityType="Self.pos_itemcategory" />
+          <EntitySet Name="pos_itemstock" EntityType="Self.pos_itemstock" />
+          <EntitySet Name="pos_role" EntityType="Self.pos_role" />
+          <EntitySet Name="pos_sales" EntityType="Self.pos_sales" />
+          <EntitySet Name="pos_salesitem" EntityType="Self.pos_salesitem" />
+          <EntitySet Name="pos_supplier" EntityType="Self.pos_supplier" />
+          <EntitySet Name="pos_unit" EntityType="Self.pos_unit" />
+          <EntitySet Name="pos_user" EntityType="Self.pos_user" />
+          <AssociationSet Name="FK_pos_sales_pos_customer" Association="Self.FK_pos_sales_pos_customer">
+            <End Role="pos_customer" EntitySet="pos_customer" />
+            <End Role="pos_sales" EntitySet="pos_sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pos_grnheader_pos_supplier" Association="Self.FK_pos_grnheader_pos_supplier">
+            <End Role="pos_supplier" EntitySet="pos_supplier" />
+            <End Role="pos_grnheader" EntitySet="pos_grnheader" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pos_grnitem_pos_grnheader" Association="Self.FK_pos_grnitem_pos_grnheader">
+            <End Role="pos_grnheader" EntitySet="pos_grnheader" />
+            <End Role="pos_grnitem" EntitySet="pos_grnitem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pos_itemstock_pos_grnheader" Association="Self.FK_pos_itemstock_pos_grnheader">
+            <End Role="pos_grnheader" EntitySet="pos_grnheader" />
+            <End Role="pos_itemstock" EntitySet="pos_itemstock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pos_item_pos_itemcategory" Association="Self.FK_pos_item_pos_itemcategory">
+            <End Role="pos_itemcategory" EntitySet="pos_itemcategory" />
+            <End Role="pos_item" EntitySet="pos_item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pos_item_pos_unit" Association="Self.FK_pos_item_pos_unit">
+            <End Role="pos_unit" EntitySet="pos_unit" />
+            <End Role="pos_item" EntitySet="pos_item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pos_itemstock_pos_item" Association="Self.FK_pos_itemstock_pos_item">
+            <End Role="pos_item" EntitySet="pos_item" />
+            <End Role="pos_itemstock" EntitySet="pos_itemstock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pos_user_pos_role" Association="Self.FK_pos_user_pos_role">
+            <End Role="pos_role" EntitySet="pos_role" />
+            <End Role="pos_user" EntitySet="pos_user" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pos_salesitem_pos_sales" Association="Self.FK_pos_salesitem_pos_sales">
+            <End Role="pos_sales" EntitySet="pos_sales" />
+            <End Role="pos_salesitem" EntitySet="pos_salesitem" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ARGOPOSModelStoreContainer" CdmEntityContainer="ArgoPosEntities">
+          <EntitySetMapping Name="pos_customer">
+            <EntityTypeMapping TypeName="ARGOPOSModel.pos_customer">
+              <MappingFragment StoreEntitySet="pos_customer">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="customername" ColumnName="customername" />
+                <ScalarProperty Name="customeraddrees" ColumnName="customeraddrees" />
+                <ScalarProperty Name="customercontact" ColumnName="customercontact" />
+                <ScalarProperty Name="loyaltypoint" ColumnName="loyaltypoint" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pos_grnheader">
+            <EntityTypeMapping TypeName="ARGOPOSModel.pos_grnheader">
+              <MappingFragment StoreEntitySet="pos_grnheader">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="suplier" ColumnName="suplier" />
+                <ScalarProperty Name="total" ColumnName="total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pos_grnitem">
+            <EntityTypeMapping TypeName="ARGOPOSModel.pos_grnitem">
+              <MappingFragment StoreEntitySet="pos_grnitem">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="itemid" ColumnName="itemid" />
+                <ScalarProperty Name="itemquntity" ColumnName="itemquntity" />
+                <ScalarProperty Name="itemcost" ColumnName="itemcost" />
+                <ScalarProperty Name="grnid" ColumnName="grnid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pos_item">
+            <EntityTypeMapping TypeName="ARGOPOSModel.pos_item">
+              <MappingFragment StoreEntitySet="pos_item">
+                <ScalarProperty Name="stock" ColumnName="stock" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="itemname" ColumnName="itemname" />
+                <ScalarProperty Name="unit" ColumnName="unit" />
+                <ScalarProperty Name="discreption" ColumnName="discreption" />
+                <ScalarProperty Name="itemcategory" ColumnName="itemcategory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pos_itemcategory">
+            <EntityTypeMapping TypeName="ARGOPOSModel.pos_itemcategory">
+              <MappingFragment StoreEntitySet="pos_itemcategory">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="category" ColumnName="category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pos_itemstock">
+            <EntityTypeMapping TypeName="ARGOPOSModel.pos_itemstock">
+              <MappingFragment StoreEntitySet="pos_itemstock">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="initalstock" ColumnName="initalstock" />
+                <ScalarProperty Name="grnid" ColumnName="grnid" />
+                <ScalarProperty Name="curentstock" ColumnName="curentstock" />
+                <ScalarProperty Name="stockcost" ColumnName="stockcost" />
+                <ScalarProperty Name="itemcost" ColumnName="itemcost" />
+                <ScalarProperty Name="stocknumber" ColumnName="stocknumber" />
+                <ScalarProperty Name="itemid" ColumnName="itemid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pos_role">
+            <EntityTypeMapping TypeName="ARGOPOSModel.pos_role">
+              <MappingFragment StoreEntitySet="pos_role">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="role" ColumnName="role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pos_sales">
+            <EntityTypeMapping TypeName="ARGOPOSModel.pos_sales">
+              <MappingFragment StoreEntitySet="pos_sales">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="salesnumber" ColumnName="salesnumber" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="customerid" ColumnName="customerid" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="loyltypoint" ColumnName="loyltypoint" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pos_salesitem">
+            <EntityTypeMapping TypeName="ARGOPOSModel.pos_salesitem">
+              <MappingFragment StoreEntitySet="pos_salesitem">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="salesid" ColumnName="salesid" />
+                <ScalarProperty Name="itemid" ColumnName="itemid" />
+                <ScalarProperty Name="itemprice" ColumnName="itemprice" />
+                <ScalarProperty Name="itemqty" ColumnName="itemqty" />
+                <ScalarProperty Name="itemcost" ColumnName="itemcost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pos_supplier">
+            <EntityTypeMapping TypeName="ARGOPOSModel.pos_supplier">
+              <MappingFragment StoreEntitySet="pos_supplier">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="suppliernmae" ColumnName="suppliernmae" />
+                <ScalarProperty Name="suppliercontact" ColumnName="suppliercontact" />
+                <ScalarProperty Name="suppliersddress" ColumnName="suppliersddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pos_unit">
+            <EntityTypeMapping TypeName="ARGOPOSModel.pos_unit">
+              <MappingFragment StoreEntitySet="pos_unit">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="unit" ColumnName="unit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pos_user">
+            <EntityTypeMapping TypeName="ARGOPOSModel.pos_user">
+              <MappingFragment StoreEntitySet="pos_user">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="role" ColumnName="role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
